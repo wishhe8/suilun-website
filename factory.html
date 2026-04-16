@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory & Production — Suilun Hardware</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* PAGE HERO */
+.page-hero {
+  background: var(--dark); padding: 140px 0 72px;
+  position: relative; overflow: hidden;
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('img/757dfbb52b981101c5790339cc6810e2.jpg');
+  background-size: cover; background-position: center;
+  filter: brightness(0.22);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero .eyebrow { color: var(--orange); }
+.page-hero h1 { color: white; font-size: clamp(36px,5vw,64px); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.45); font-size: 18px; max-width: 600px; }
+
+/* FACTORY OVERVIEW */
+.overview-section { background: white; }
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+@media(max-width:900px) { .overview-grid { grid-template-columns: 1fr; gap: 40px; } }
+.overview-img {
+  border-radius: var(--r2); overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.overview-img img { width: 100%; height: 440px; object-fit: cover; }
+.overview-img .img-tag {
+  position: absolute; bottom: 20px; left: 20px;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  color: white; padding: 10px 16px; border-radius: 10px;
+  font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+}
+.overview-img .img-tag .flag { font-size: 18px; }
+.overview-text h2 { margin-bottom: 20px; }
+.overview-text p { color: var(--gray-500); font-size: 16px; line-height: 1.75; margin-bottom: 28px; }
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.spec-box {
+  background: var(--gray-50); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 18px 16px;
+}
+.spec-box .sv { font-size: 22px; font-weight: 800; color: var(--orange); letter-spacing: -0.02em; }
+.spec-box .sl { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+
+/* CHINA SECTION */
+.china-section { background: var(--gray-50); }
+.china-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+@media(max-width:900px) { .china-grid { grid-template-columns: 1fr; gap: 40px; } }
+.china-photo {
+  border-radius: var(--r2); overflow: hidden;
+  box-shadow: var(--shadow-lg); position: relative;
+  background: var(--dark);
+}
+.china-photo img { width: 100%; height: 440px; object-fit: cover; opacity: 0.92; }
+.china-photo .img-tag {
+  position: absolute; bottom: 20px; left: 20px;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  color: white; padding: 10px 16px; border-radius: 10px;
+  font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+}
+.china-text h2 { margin-bottom: 16px; }
+.china-text p { color: var(--gray-500); font-size: 16px; line-height: 1.75; margin-bottom: 20px; }
+.china-detail-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.cd-chip {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.cd-chip .cd-v { font-size: 16px; font-weight: 800; color: var(--dark); }
+.cd-chip .cd-l { font-size: 11px; color: var(--gray-400); }
+
+/* MAP STRIP */
+.map-strip { background: var(--dark2); padding: 48px 0; }
+.map-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 28px; }
+.map-loc { display: flex; align-items: center; gap: 16px; }
+.map-flag { font-size: 48px; }
+.map-loc h3 { color: white; font-size: 18px; margin-bottom: 4px; }
+.map-loc p { color: rgba(255,255,255,0.4); font-size: 14px; }
+.map-route { display: flex; gap: 20px; flex-wrap: wrap; }
+.route-item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 14px 18px;
+}
+.route-item .ri { font-size: 20px; }
+.route-item .rl { font-size: 13px; font-weight: 600; color: white; }
+.route-item .rs { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* WORKSHOPS */
+.workshops-section { background: white; }
+.workshop-list { display: flex; flex-direction: column; gap: 80px; }
+.workshop-item { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.workshop-item.reverse { direction: rtl; }
+.workshop-item.reverse > * { direction: ltr; }
+@media(max-width:900px) {
+  .workshop-item, .workshop-item.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+}
+.workshop-photo { border-radius: var(--r2); overflow: hidden; box-shadow: var(--shadow-lg); }
+.workshop-photo img { width: 100%; height: 380px; object-fit: cover; transition: transform 0.5s; }
+.workshop-photo:hover img { transform: scale(1.03); }
+.workshop-icon-panel {
+  border-radius: var(--r2);
+  background: var(--dark);
+  height: 380px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 20px;
+  padding: 40px;
+}
+.workshop-icon-panel .wi-num {
+  font-size: 80px; font-weight: 900; color: rgba(232,100,10,0.15);
+  line-height: 1; font-family: 'Georgia', serif;
+}
+.workshop-icon-panel .wi-icon {
+  width: 72px; height: 72px; border-radius: 18px;
+  background: rgba(232,100,10,0.15); border: 1px solid rgba(232,100,10,0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.workshop-icon-panel .wi-icon svg { width: 36px; height: 36px; stroke: var(--orange); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.workshop-icon-panel .wi-label { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; text-transform: uppercase; }
+.workshop-num {
+  font-size: 64px; font-weight: 900; color: var(--orange);
+  opacity: 0.18; line-height: 1; margin-bottom: -16px;
+  font-family: 'Georgia', serif;
+}
+.workshop-info .eyebrow { margin-bottom: 8px; }
+.workshop-info h3 { font-size: clamp(22px,2.5vw,30px); margin-bottom: 16px; }
+.workshop-info p { color: var(--gray-500); font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
+.workshop-caps { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.workshop-caps li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--gray-700);
+}
+.workshop-caps li::before {
+  content: ''; width: 20px; height: 20px; flex-shrink: 0;
+  background: var(--orange-pale); border-radius: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10l3.5 3.5L15 7' stroke='%23E8640A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center;
+}
+
+/* CAPABILITIES TABLE */
+.capabilities-section { background: var(--gray-50); }
+.cap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+@media(max-width:768px) { .cap-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px) { .cap-grid { grid-template-columns: 1fr; } }
+.cap-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r2); padding: 28px 24px;
+  background: white;
+  transition: all 0.25s;
+}
+.cap-card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: var(--shadow); }
+.cap-icon { font-size: 32px; margin-bottom: 16px; }
+.cap-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.cap-card p { font-size: 13px; color: var(--gray-500); line-height: 1.65; }
+
+/* CERT SECTION */
+.cert-section { background: var(--orange); padding: 80px 0; }
+.cert-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+@media(max-width:768px) { .cert-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px) { .cert-grid { grid-template-columns: 1fr; } }
+.cert-card {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--r2); padding: 32px 24px; text-align: center;
+  transition: all 0.25s;
+}
+.cert-card:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+.cert-card .ci { font-size: 40px; margin-bottom: 16px; }
+.cert-card h4 { color: white; font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.cert-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <img src="img/e153deb89362e9149286156237be7765.jpg" alt="Suilun" onerror="this.style.display='none'">
+      </div>
+      <span class="logo-name">SUIL<span>UN</span></span>
+    </a>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="factory.html" class="active">Factory</a>
+      <a href="index.html#partners">Clients</a>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="wrap page-hero-content">
+    <span class="eyebrow">Global Manufacturing · Thailand & China</span>
+    <h1>Factory &<br>Production</h1>
+    <p>Two world-class facilities — a brand-new 30,000㎡ production hub in Thailand, backed by 30 years of manufacturing heritage in China.</p>
+  </div>
+</div>
+<div class="orange-rule"></div>
+
+<!-- THAILAND OVERVIEW -->
+<section class="overview-section">
+  <div class="wrap">
+    <div class="overview-grid">
+      <div class="overview-img reveal">
+        <img src="img/cb2924f32d6f41dc25d0038b47ada70e.jpg" alt="Suilun Thailand Factory Entrance" loading="lazy">
+        <div class="img-tag"><span class="flag">🇹🇭</span> Chonburi Province, Thailand</div>
+      </div>
+      <div class="overview-text reveal d1">
+        <span class="eyebrow">Thailand Production Hub · Est. 2024</span>
+        <h2>Suilun Hardware (Thailand) Co., Ltd.</h2>
+        <p>Located in Chonburi Province, Thailand — one of Southeast Asia's premier industrial zones — our flagship production facility is purpose-built for scale, speed, and global logistics. Positioned just 30 km from Laem Chabang, Thailand's largest deep-sea port, we ship direct to US retail distribution centers faster than any factory in China.</p>
+        <p>From raw steel coil to packaged finished product, every step happens under one roof — full process control, zero outsourcing.</p>
+        <div class="spec-grid">
+          <div class="spec-box"><div class="sv">16 Acres</div><div class="sl">Total Site Area</div></div>
+          <div class="spec-box"><div class="sv">30,000㎡</div><div class="sl">Production Floor</div></div>
+          <div class="spec-box"><div class="sv">300+</div><div class="sl">Skilled Employees</div></div>
+          <div class="spec-box"><div class="sv">100M+</div><div class="sl">Annual Capacity (Hinges)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP STRIP -->
+<div class="map-strip">
+  <div class="wrap">
+    <div class="map-inner">
+      <div class="map-loc">
+        <div class="map-flag">🇹🇭</div>
+        <div>
+          <h3>Chonburi Province, Thailand</h3>
+          <p>Eastern Economic Corridor — Southeast Asia's Premier Industrial Zone</p>
+        </div>
+      </div>
+      <div class="map-route">
+        <div class="route-item">
+          <div class="ri">🚢</div>
+          <div><div class="rl">30 km</div><div class="rs">Laem Chabang Port</div></div>
+        </div>
+        <div class="route-item">
+          <div class="ri">✈️</div>
+          <div><div class="rl">70 km</div><div class="rs">Bangkok Airport (BKK)</div></div>
+        </div>
+        <div class="route-item">
+          <div class="ri">🏭</div>
+          <div><div class="rl">EEC Zone</div><div class="rs">Premier Industrial Region</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHINA OVERVIEW -->
+<section class="china-section">
+  <div class="wrap">
+    <div class="china-grid">
+      <div class="china-text reveal">
+        <span class="eyebrow">China R&D & Heritage · 30+ Years</span>
+        <h2>Pinghu Hinge Co., Ltd.</h2>
+        <p>Our parent company, founded over 30 years ago in Pinghu City, Jiaxing, Zhejiang Province — the heartland of China's hardware manufacturing industry. Pinghu Hinge is the engineering and R&D backbone behind every Suilun product.</p>
+        <p>Home to our precision tooling design, electroplating chemistry expertise, new product development, and long-running relationships with the world's top steel suppliers. The decades of hard-won process knowledge developed here is what makes Suilun's quality impossible to replicate overnight.</p>
+        <div class="china-detail-row">
+          <div class="cd-chip"><div class="cd-v">30+</div><div class="cd-l">Years Founded</div></div>
+          <div class="cd-chip"><div class="cd-v">Pinghu City</div><div class="cd-l">Jiaxing, Zhejiang Province</div></div>
+          <div class="cd-chip"><div class="cd-v">ISO 9001</div><div class="cd-l">Quality Certified</div></div>
+          <div class="cd-chip"><div class="cd-v">R&D Hub</div><div class="cd-l">New Product Development</div></div>
+        </div>
+      </div>
+      <div class="china-photo reveal d1">
+        <img src="img/4af533fcb01ea7e97c02aa66dd357814.jpg" alt="Pinghu Hinge Factory Workshop" loading="lazy">
+        <div class="img-tag"><span class="flag">🇨🇳</span> Pinghu City, Zhejiang, China</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<section class="workshops-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">5 Core Workshops</span>
+      <h2>End-to-End Production<br>Under One Roof</h2>
+      <p class="lead" style="max-width:560px;margin-top:12px;">Every process — raw material to packaged finished product — happens in-house. No outsourcing. No compromise on quality.</p>
+    </div>
+    <div class="workshop-list">
+
+      <!-- 01 Pressing -->
+      <div class="workshop-item reveal">
+        <div class="workshop-photo">
+          <img src="img/4af533fcb01ea7e97c02aa66dd357814.jpg" alt="Pressing & Stamping Workshop" loading="lazy" style="object-position: top;">
+        </div>
+        <div class="workshop-info">
+          <div class="workshop-num">01</div>
+          <span class="eyebrow">Workshop 01</span>
+          <h3>Pressing & Stamping</h3>
+          <p>High-speed steel cutting and cold-rolling presses form raw material into precise hinge leaves, brackets, and components. Automated stamping lines run at tolerances measured in fractions of a millimeter.</p>
+          <ul class="workshop-caps">
+            <li>High-tonnage progressive stamping presses</li>
+            <li>Cold-roll forming for bracket and slide profiles</li>
+            <li>Automated coil feeding and part ejection</li>
+            <li>In-line dimensional inspection</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 02 Polishing -->
+      <div class="workshop-item reverse reveal">
+        <div class="workshop-icon-panel">
+          <div class="wi-num">02</div>
+          <div class="wi-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <div class="wi-label">Polishing</div>
+        </div>
+        <div class="workshop-info">
+          <div class="workshop-num">02</div>
+          <span class="eyebrow">Workshop 02</span>
+          <h3>Polishing Workshop</h3>
+          <p>Surface preparation is critical to both appearance and plating adhesion. Our polishing workshop uses automated barrel finishing and belt sanding to achieve consistent, commercial-grade surface quality across millions of parts per month.</p>
+          <ul class="workshop-caps">
+            <li>Automated barrel and vibratory finishing</li>
+            <li>Belt and wheel polishing for premium finishes</li>
+            <li>Surface roughness measurement (Ra testing)</li>
+            <li>Pre-treatment cleaning for optimal plating adhesion</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 03 Electroplating -->
+      <div class="workshop-item reveal">
+        <div class="workshop-photo">
+          <img src="img/4af533fcb01ea7e97c02aa66dd357814.jpg" alt="Electroplating Lines" loading="lazy" style="object-position: bottom;">
+        </div>
+        <div class="workshop-info">
+          <div class="workshop-num">03</div>
+          <span class="eyebrow">Workshop 03</span>
+          <h3>Electroplating & Surface Treatment</h3>
+          <p>Eight automated surface treatment lines deliver electroplating, electrophoresis (e-coating), and powder coating. Salt spray testing up to 1,000 hours ensures every product meets the most demanding US market corrosion standards.</p>
+          <ul class="workshop-caps">
+            <li>8 automated electroplating & e-coat lines</li>
+            <li>Salt spray testing up to 1,000 hours</li>
+            <li>Zinc, nickel, chrome, and brass plating</li>
+            <li>Powder coating: 50+ stock colors + custom RAL</li>
+            <li>Closed-loop environmental waste treatment</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 04 Assembly -->
+      <div class="workshop-item reverse reveal">
+        <div class="workshop-icon-panel">
+          <div class="wi-num">04</div>
+          <div class="wi-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="wi-label">Assembly & QC</div>
+        </div>
+        <div class="workshop-info">
+          <div class="workshop-num">04</div>
+          <span class="eyebrow">Workshop 04</span>
+          <h3>Assembly & Quality Control</h3>
+          <p>Finished components come together on high-efficiency assembly lines — pins are pressed, springs tensioned, ball bearings installed, and every unit is functionally tested before it leaves the line. UL compliance is verified on every applicable product.</p>
+          <ul class="workshop-caps">
+            <li>Semi-automated pin press and riveting systems</li>
+            <li>Spring tensioning and calibration stations</li>
+            <li>Ball-bearing installation and torque testing</li>
+            <li>100% functional test on spring-hinge products</li>
+            <li>UL compliance verification for listed products</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 05 Packaging & Warehouse -->
+      <div class="workshop-item reveal">
+        <div class="workshop-photo">
+          <img src="img/57319b285ebb012fe8e9c56c8a75c29b.jpg" alt="Packaging and Warehouse" loading="lazy">
+        </div>
+        <div class="workshop-info">
+          <div class="workshop-num">05</div>
+          <span class="eyebrow">Workshop 05</span>
+          <h3>Packaging & Warehouse</h3>
+          <p>Modern warehouse with forklift-assisted racking and ERP-integrated inventory management. Products are packaged to Home Depot, Builders FirstSource, and private-label specifications — retail-ready, direct to shelf.</p>
+          <ul class="workshop-caps">
+            <li>Retail-ready blister, clamshell, and box formats</li>
+            <li>Private label and custom packaging programs</li>
+            <li>ERP-integrated inventory and order management</li>
+            <li>Container-load optimization for export</li>
+            <li>30 km direct route to Laem Chabang Port</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Full Capabilities</span>
+      <h2>What We Can Do for You</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="cap-icon">🔩</div>
+        <h4>Stamping & Forming</h4>
+        <p>Progressive dies, single-station stamping, and cold-roll forming. Steel gauge from 0.8mm to 6mm.</p>
+      </div>
+      <div class="cap-card reveal d1">
+        <div class="cap-icon">✨</div>
+        <h4>Surface Treatment</h4>
+        <p>Electroplating, e-coating, powder coating, polishing. 1,000-hour salt spray capability.</p>
+      </div>
+      <div class="cap-card reveal d2">
+        <div class="cap-icon">⚙️</div>
+        <h4>Assembly & Testing</h4>
+        <p>Full assembly lines with functional testing, torque calibration, and UL compliance verification.</p>
+      </div>
+      <div class="cap-card reveal d3">
+        <div class="cap-icon">📦</div>
+        <h4>Custom Packaging</h4>
+        <p>Retail-ready, private label, bulk export. Packaged to any customer specification.</p>
+      </div>
+      <div class="cap-card reveal d1">
+        <div class="cap-icon">🎨</div>
+        <h4>50+ Finishes</h4>
+        <p>Satin nickel, oil-rubbed bronze, polished brass, matte black, custom color — any finish at volume.</p>
+      </div>
+      <div class="cap-card reveal d2">
+        <div class="cap-icon">🌿</div>
+        <h4>Environmental Systems</h4>
+        <p>Full waste gas, wastewater, and dust treatment. Compliant with international environmental standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section">
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;">
+      <span class="eyebrow" style="color:rgba(255,255,255,0.6)">Quality & Compliance</span>
+      <h2 style="color:white;margin-bottom:12px;">Certified at Every Level</h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto;">International certifications that reflect our commitment to quality, safety, and sustainability — across both facilities.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="ci">🏅</div>
+        <h4>ISO 9001</h4>
+        <p>International standard for quality management systems. Covers design, production, testing, and delivery.</p>
+      </div>
+      <div class="cert-card reveal d1">
+        <div class="ci">🔥</div>
+        <h4>UL Listed</h4>
+        <p>Underwriters Laboratories listing for commercial and spring hinges used in fire-rated door assemblies.</p>
+      </div>
+      <div class="cert-card reveal d2">
+        <div class="ci">⭐</div>
+        <h4>6S Management</h4>
+        <p>Sort, Set, Shine, Standardize, Sustain, Safety — gold-standard lean manufacturing site management.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">SUIL<span style="color:var(--orange)">UN</span> HARDWARE</span>
+        <p>Fully integrated manufacturing — from raw steel to retail-ready product. Two facilities, one standard of excellence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Workshops</h4>
+        <a href="#">Pressing & Stamping</a>
+        <a href="#">Polishing</a>
+        <a href="#">Electroplating</a>
+        <a href="#">Assembly & QC</a>
+        <a href="#">Packaging & Warehouse</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="index.html#partners">Partners</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <a href="#">🇹🇭 Chonburi Province, Thailand</a>
+        <a href="#">🇨🇳 Pinghu City, Zhejiang, China</a>
+        <a href="#">30km to Laem Chabang Port</a>
+        <a href="#">EEC Industrial Zone</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Suilun Hardware (Thailand) Co., Ltd. All rights reserved.</p>
+      <p>A subsidiary of Pinghu Hinge Co., Ltd. · Pinghu City, Jiaxing, Zhejiang, China</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(els => els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

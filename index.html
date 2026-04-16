@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suilun Hardware — America's #1 Hinge Brand</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HERO ────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh; padding-top: 64px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  background: var(--dark);
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background-image: url('img/757dfbb52b981101c5790339cc6810e2.jpg');
+  background-size: cover; background-position: center top;
+  filter: brightness(0.3);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(26,26,26,0.90) 45%, rgba(232,100,10,0.10) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 720px; padding: 100px 0; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,100,10,0.18); border: 1px solid rgba(232,100,10,0.35);
+  border-radius: 100px; padding: 6px 16px; margin-bottom: 36px;
+}
+.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+.hero-badge span { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.35} }
+.hero h1 { color: white; margin-bottom: 24px; }
+.hero h1 em { color: var(--orange); font-style: normal; }
+.hero .lead { color: rgba(255,255,255,0.55); max-width: 560px; margin-bottom: 44px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ── STATS ───────────────────────────────────────────── */
+.stats-bar { background: var(--dark2); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat-cell {
+  padding: 36px 28px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-n { font-size: clamp(32px,4vw,52px); font-weight: 900; color: white; letter-spacing: -0.03em; line-height: 1; }
+.stat-n em { color: var(--orange); font-style: normal; }
+.stat-l { font-size: 13px; color: rgba(255,255,255,0.38); margin-top: 6px; }
+@media(max-width:640px) {
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .stat-cell { border-bottom: 1px solid rgba(255,255,255,0.07); }
+}
+
+/* ── BEYOND HINGES ───────────────────────────────────── */
+.beyond-section { background: white; }
+.beyond-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+@media(max-width:900px) { .beyond-inner { grid-template-columns: 1fr; gap: 48px; } }
+.beyond-text .lead { margin-top: 16px; margin-bottom: 36px; }
+.beyond-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange-pale); border: 1px solid rgba(232,100,10,0.2);
+  border-radius: 8px; padding: 8px 14px; margin-bottom: 8px;
+  font-size: 13px; font-weight: 600; color: var(--orange);
+}
+.beyond-tag svg { flex-shrink: 0; }
+.beyond-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.beyond-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.beyond-card {
+  background: var(--gray-50); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 24px 20px;
+  transition: all 0.22s;
+}
+.beyond-card:hover { border-color: var(--orange); background: var(--orange-pale); transform: translateY(-2px); }
+.beyond-card .bc-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--orange); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.beyond-card .bc-icon svg { width: 22px; height: 22px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.beyond-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.beyond-card p { font-size: 13px; color: var(--gray-500); line-height: 1.55; }
+
+/* ── CATEGORIES ──────────────────────────────────────── */
+.categories-section { background: var(--gray-50); }
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media(max-width:900px) { .cat-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px) { .cat-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
+.cat-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.cat-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(232,100,10,0.12); }
+.cat-img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  background: var(--gray-100);
+}
+.cat-icon-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--gray-50);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.cat-icon-wrap svg { width: 56px; height: 56px; stroke: var(--gray-400); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+.cat-card:hover .cat-icon-wrap svg { stroke: var(--orange); }
+.cat-body { padding: 20px 16px; }
+.cat-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.cat-count { font-size: 12px; color: var(--gray-400); }
+.cat-card.hero-cat {
+  grid-column: span 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  text-align: left;
+  background: var(--dark);
+  border-color: var(--dark);
+}
+.cat-card.hero-cat:hover { border-color: var(--orange); }
+.cat-card.hero-cat .cat-img { aspect-ratio: auto; height: 100%; min-height: 220px; }
+.cat-card.hero-cat .cat-body { padding: 32px 28px; display: flex; flex-direction: column; justify-content: center; }
+.cat-card.hero-cat .cat-name { font-size: 20px; color: white; margin-bottom: 8px; }
+.cat-card.hero-cat .cat-count { color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.cat-arrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--orange);
+}
+.cat-badge {
+  display: inline-block;
+  background: var(--orange); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+  margin-bottom: 12px;
+}
+@media(max-width:768px) {
+  .cat-card.hero-cat { grid-column: span 1; grid-template-columns: 1fr; }
+  .cat-card.hero-cat .cat-img { min-height: 180px; }
+}
+
+/* ── PARTNERS ────────────────────────────────────────── */
+.partners-section { background: white; }
+.partner-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-bottom: 40px;
+}
+@media(max-width:768px) { .partner-grid { grid-template-columns: 1fr; } }
+.partner-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r2); padding: 36px;
+  display: flex; gap: 28px; align-items: flex-start;
+  transition: all 0.25s;
+}
+.partner-card:hover { border-color: var(--orange); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.partner-logo-box {
+  flex-shrink: 0;
+  width: 80px; height: 80px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; letter-spacing: -0.02em;
+  color: white; text-align: center; line-height: 1.2;
+}
+.partner-info h3 { font-size: 20px; margin-bottom: 6px; }
+.partner-rank {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--orange);
+  background: var(--orange-pale); padding: 3px 10px; border-radius: 100px;
+  margin-bottom: 12px;
+}
+.partner-info p { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+.partner-stat { margin-top: 16px; display: flex; gap: 24px; flex-wrap: wrap; }
+.ps-item .ps-num { font-size: 20px; font-weight: 800; color: var(--dark); }
+.ps-item .ps-lbl { font-size: 11px; color: var(--gray-400); }
+
+/* ── FACTORIES ───────────────────────────────────────── */
+.factories-section { background: var(--dark); }
+.factories-header { text-align: center; padding-bottom: 56px; }
+.factories-header h2 { color: white; margin-top: 12px; margin-bottom: 16px; }
+.factories-header p { color: rgba(255,255,255,0.45); font-size: 16px; max-width: 540px; margin: 0 auto; }
+.factories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+@media(max-width:900px) { .factories-grid { grid-template-columns: 1fr; } }
+.factory-panel { position: relative; overflow: hidden; min-height: 520px; }
+.factory-panel-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.6s;
+}
+.factory-panel:hover .factory-panel-img { transform: scale(1.04); }
+.factory-panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.3) 100%);
+}
+.factory-panel-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 44px 40px;
+}
+@media(max-width:640px) { .factory-panel-content { padding: 32px 24px; } }
+.factory-flag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px; padding: 5px 14px; margin-bottom: 16px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: white;
+}
+.factory-panel h3 { font-size: clamp(20px,2.5vw,28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -0.015em; }
+.factory-panel-sub { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; line-height: 1.6; }
+.factory-detail-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.fd-chip {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.fd-chip .fd-v { font-size: 16px; font-weight: 800; color: var(--orange); }
+.fd-chip .fd-l { font-size: 11px; color: rgba(255,255,255,0.35); }
+.factory-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 24px; font-size: 13px; font-weight: 700;
+  color: var(--orange); transition: gap 0.2s;
+}
+.factory-link:hover { gap: 10px; }
+
+/* ── QUALITY STRIP ───────────────────────────────────── */
+.quality-strip { background: var(--orange-pale); padding: 56px 0; }
+.quality-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+.quality-text h3 { margin-bottom: 6px; }
+.quality-text p { color: var(--gray-500); font-size: 15px; }
+.cert-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.cert-pill {
+  display: flex; align-items: center; gap: 10px;
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 14px 20px;
+  box-shadow: var(--shadow);
+}
+.cert-pill .cert-icon { font-size: 24px; }
+.cert-pill .cert-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+.cert-pill .cert-desc { font-size: 11px; color: var(--gray-400); }
+
+/* ── CTA ─────────────────────────────────────────────── */
+.cta-section { background: var(--orange); padding: 88px 0; text-align: center; }
+.cta-section h2 { color: white; margin-bottom: 16px; }
+.cta-section p { color: rgba(255,255,255,0.75); font-size: 18px; margin-bottom: 40px; }
+.cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-white { background: white; color: var(--orange); font-weight: 800; }
+.btn-white:hover { background: var(--gray-100); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.btn-outline-white { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); font-weight: 700; }
+.btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <img src="img/e153deb89362e9149286156237be7765.jpg" alt="Suilun" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <svg style="display:none" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"/></svg>
+      </div>
+      <span class="logo-name">SUIL<span>UN</span></span>
+    </a>
+    <div class="nav-menu">
+      <a href="index.html" class="active">Home</a>
+      <a href="products.html">Products</a>
+      <a href="factory.html">Factory</a>
+      <a href="#partners">Clients</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-content reveal">
+      <div class="hero-badge"><span class="dot"></span><span>America's #1 Hinge Brand · 30+ Years</span></div>
+      <h1>The Hardware<br>America <em>Builds With.</em></h1>
+      <p class="lead">The #1 hinge brand in the US — and now a complete hardware partner. 100M+ hinges a year, plus door hardware, drawer systems, cabinet fittings, and beyond. New state-of-the-art factory in Thailand.</p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn btn-primary">View All Products <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="margin-left:2px"><path d="M2.5 7h9m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="factory.html" class="btn btn-outline">Our Factory</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-n">30<em>+</em></div><div class="stat-l">Years of Excellence</div></div>
+      <div class="stat-cell"><div class="stat-n">100<em>M+</em></div><div class="stat-l">Hinges Per Year</div></div>
+      <div class="stat-cell"><div class="stat-n">1,000<em>+</em></div><div class="stat-l">Product SKUs</div></div>
+      <div class="stat-cell"><div class="stat-n">100<em>+</em></div><div class="stat-l">Countries Served</div></div>
+    </div>
+  </div>
+</div>
+<div class="orange-rule"></div>
+
+<!-- BEYOND HINGES -->
+<section class="beyond-section">
+  <div class="wrap">
+    <div class="beyond-inner">
+      <div class="beyond-text reveal">
+        <span class="eyebrow">Full Hardware Range</span>
+        <h2>More Than Hinges — Everything a Builder Needs</h2>
+        <p class="lead">We built our reputation as America's #1 hinge brand. Now we bring that same manufacturing excellence to a complete line of architectural hardware. One trusted supplier — any hardware you need.</p>
+        <div class="beyond-tags">
+          <span class="beyond-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            30+ Year Track Record
+          </span>
+          <span class="beyond-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.39 0 4.57.93 6.18 2.44"/></svg>
+            ISO 9001 · UL Listed
+          </span>
+          <span class="beyond-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Custom OEM Welcome
+          </span>
+        </div>
+      </div>
+      <div class="beyond-grid reveal d1">
+        <!-- Door Handles -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M3 9v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9"/><path d="M3 9l9-7 9 7"/></svg>
+          </div>
+          <h4>Door Handles & Levers</h4>
+          <p>Passage, privacy, and entry sets for residential and commercial doors.</p>
+        </div>
+        <!-- Drawer Slides -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="4" rx="1"/><rect x="2" y="13" width="20" height="4" rx="1"/><path d="M6 9h.01M6 15h.01"/></svg>
+          </div>
+          <h4>Drawer Slides & Tracks</h4>
+          <p>Full-extension, soft-close, and heavy-duty telescopic slides up to 500 lbs.</p>
+        </div>
+        <!-- Cabinet Hardware -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+          </div>
+          <h4>Cabinet Hardware</h4>
+          <p>European concealed hinges, flush hinges, overlay and face-frame styles.</p>
+        </div>
+        <!-- Shelf & Brackets -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/><path d="M8 6v12M16 6v12"/></svg>
+          </div>
+          <h4>Shelf Brackets & Supports</h4>
+          <p>Standard, angled, and heavy-load brackets for wall and cabinet shelving.</p>
+        </div>
+        <!-- Door Stops & Closers -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 3v18"/><path d="M6 12h12"/><circle cx="6" cy="12" r="3"/></svg>
+          </div>
+          <h4>Door Stops & Closers</h4>
+          <p>Spring rods, floor stops, wall stops, and automatic door closers.</p>
+        </div>
+        <!-- Custom OEM -->
+        <div class="beyond-card">
+          <div class="bc-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <h4>Custom & OEM</h4>
+          <p>Private label, custom finishes, or entirely new specs. If it's hardware, we can make it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT CATEGORIES -->
+<section class="categories-section" id="products">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product Range</span>
+      <h2>Hinge Lines — Category by Category</h2>
+      <p class="lead" style="max-width:560px;margin-top:12px;">Our core strength: the most complete hinge catalog in the US market, from residential door hardware to heavy commercial and UL-rated fire-door applications.</p>
+    </div>
+    <div class="cat-grid">
+
+      <!-- HERO CARD — Residential Hinges -->
+      <a href="products.html#residential" class="cat-card hero-cat reveal">
+        <img class="cat-img" src="img/6680ef01e1f084ab9c419d79f8d6a4d5.jpg" alt="Residential Hinges" loading="lazy">
+        <div class="cat-body">
+          <span class="cat-badge">#1 in the US</span>
+          <div class="cat-name">Residential Hinges</div>
+          <div class="cat-count">Square Corner, Round Corner, Ball-Bearing, Light Iron & more</div>
+          <div class="cat-arrow" style="margin-top:20px">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Commercial Hinge -->
+      <a href="products.html#commercial" class="cat-card reveal d1">
+        <img class="cat-img" src="img/987623bb5fa32a2aaf404b2c9ffb2390.jpg" alt="Commercial Hinges" loading="lazy">
+        <div class="cat-body">
+          <div class="cat-name">Commercial Hinges</div>
+          <div class="cat-count">Security, Heavy-Duty, UL Listed</div>
+        </div>
+      </a>
+
+      <!-- Spring Hinge -->
+      <a href="products.html#spring" class="cat-card reveal d2">
+        <img class="cat-img" src="img/aa87e4f6448f8d0ce8bfd99c285d1610.jpg" alt="Spring Hinges" loading="lazy">
+        <div class="cat-body">
+          <div class="cat-name">Spring Hinges</div>
+          <div class="cat-count">UL Spring, Self-Closing, Cabinet Spring</div>
+        </div>
+      </a>
+
+      <!-- Cabinet Hinge — icon card -->
+      <a href="products.html#cabinet" class="cat-card reveal d3">
+        <div class="cat-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/><circle cx="9" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="cat-body">
+          <div class="cat-name">Cabinet Hardware</div>
+          <div class="cat-count">European, Flush, Overlay, Face Frame</div>
+        </div>
+      </a>
+
+      <!-- Drawer Slides — icon card -->
+      <a href="products.html#drawer" class="cat-card reveal d1">
+        <div class="cat-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="5" rx="1"/><rect x="2" y="13" width="20" height="5" rx="1"/><circle cx="12" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="cat-body">
+          <div class="cat-name">Drawer Slides</div>
+          <div class="cat-count">Full-Extension, Soft-Close, Heavy Duty</div>
+        </div>
+      </a>
+
+      <!-- Shelf Brackets — icon card -->
+      <a href="products.html#shelf" class="cat-card reveal d2">
+        <div class="cat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/><path d="M7 5v7"/><path d="M17 5v7"/></svg>
+        </div>
+        <div class="cat-body">
+          <div class="cat-name">Shelf Brackets</div>
+          <div class="cat-count">Standard, Hooked, Heavy Load</div>
+        </div>
+      </a>
+
+      <!-- Door Stops — icon card -->
+      <a href="products.html#doorstop" class="cat-card reveal d3">
+        <div class="cat-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="4" height="18" rx="2"/><path d="M7 12h14"/><circle cx="18" cy="12" r="3"/></svg>
+        </div>
+        <div class="cat-body">
+          <div class="cat-name">Door Stops & Closers</div>
+          <div class="cat-count">Iron Stop, Spring Stop, Door Spring Rod</div>
+        </div>
+      </a>
+
+      <!-- Custom / OEM -->
+      <a href="#contact" class="cat-card reveal d4" style="background:var(--dark);border-color:var(--dark);">
+        <div class="cat-icon-wrap" style="background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);">
+          <svg viewBox="0 0 24 24" style="stroke:rgba(255,255,255,0.5)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="cat-body">
+          <div class="cat-name" style="color:white">Custom & OEM</div>
+          <div class="cat-count" style="color:rgba(255,255,255,0.35)">Private Label · Any Spec · Any Hardware</div>
+        </div>
+      </a>
+
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="products.html" class="btn btn-outline-dark">View Full Product Catalog →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners-section" id="partners">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Trusted Partners</span>
+      <h2>The Industry's Most Trusted Names Choose Suilun</h2>
+      <p class="lead" style="max-width:580px;margin-top:12px;">America's largest home improvement and building supply chains rely on our quality, consistency, and scale.</p>
+    </div>
+    <div class="partner-grid">
+
+      <!-- Home Depot -->
+      <div class="partner-card reveal">
+        <div class="partner-logo-box" style="background:#F96302;">
+          <div>
+            <div style="font-size:11px;letter-spacing:0.01em">THE</div>
+            <div style="font-size:16px">HOME</div>
+            <div style="font-size:16px">DEPOT</div>
+          </div>
+        </div>
+        <div class="partner-info">
+          <span class="partner-rank">World's #1 Home Improvement Retailer</span>
+          <h3>The Home Depot</h3>
+          <p>The world's largest home improvement retailer and a Fortune 20 company. With 2,300+ stores across the US, Canada, and Mexico, Home Depot is the destination for contractors, builders, and homeowners alike. Suilun hardware is stocked in their hinge and door hardware aisles nationwide.</p>
+          <div class="partner-stat">
+            <div class="ps-item"><div class="ps-num">$157B</div><div class="ps-lbl">Annual Revenue</div></div>
+            <div class="ps-item"><div class="ps-num">2,300+</div><div class="ps-lbl">Store Locations</div></div>
+            <div class="ps-item"><div class="ps-num">#1</div><div class="ps-lbl">Home Improvement</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Builders FirstSource -->
+      <div class="partner-card reveal d1">
+        <div class="partner-logo-box" style="background:#1E4D8C;">
+          <div style="font-size:10px;letter-spacing:0.02em;line-height:1.4">
+            <div>BUILDERS</div>
+            <div>FIRST</div>
+            <div>SOURCE</div>
+          </div>
+        </div>
+        <div class="partner-info">
+          <span class="partner-rank">America's #1 Building Products Supplier</span>
+          <h3>Builders FirstSource</h3>
+          <p>The largest US supplier of building materials, manufactured components, and construction services for new residential construction. Serving professional homebuilders across the country — a long-term Suilun partner.</p>
+          <div class="partner-stat">
+            <div class="ps-item"><div class="ps-num">$22B+</div><div class="ps-lbl">Annual Revenue</div></div>
+            <div class="ps-item"><div class="ps-num">570+</div><div class="ps-lbl">US Locations</div></div>
+            <div class="ps-item"><div class="ps-num">#1</div><div class="ps-lbl">Pro Builder Supply</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Penrod -->
+      <div class="partner-card reveal d2">
+        <div class="partner-logo-box" style="background:#2E7D32;">
+          <div style="font-size:18px;font-weight:900;letter-spacing:0.04em">P</div>
+        </div>
+        <div class="partner-info">
+          <span class="partner-rank">Hardware Distribution Partner</span>
+          <h3>Penrod</h3>
+          <p>A key distribution partner in the hardware and door products space, Penrod brings Suilun's products to regional markets, wholesale channels, and specialty builders across the United States.</p>
+          <div class="partner-stat">
+            <div class="ps-item"><div class="ps-num">Multi-state</div><div class="ps-lbl">Distribution Network</div></div>
+            <div class="ps-item"><div class="ps-num">Long-term</div><div class="ps-lbl">Suilun Partner</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Partnership -->
+      <div class="partner-card reveal d3" style="background: linear-gradient(135deg, var(--gray-50), white); border-style: dashed; border-color: var(--gray-200);">
+        <div class="partner-logo-box" style="background:var(--orange);">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="partner-info">
+          <span class="partner-rank">Open for Partnership</span>
+          <h3>Your Company Here</h3>
+          <p>We work with retailers, distributors, commercial contractors, and residential builders across the US and 100+ countries. If you're looking for a reliable, high-volume hardware partner — we'd love to talk.</p>
+          <div style="margin-top:20px">
+            <a href="#contact" class="btn btn-primary" style="padding:10px 20px;font-size:13px;">Become a Partner →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FACTORIES — DUAL PANEL -->
+<section class="factories-section" id="factory-overview">
+  <div class="wrap">
+    <div class="factories-header reveal">
+      <span class="eyebrow">Global Manufacturing</span>
+      <h2>Two World-Class Facilities</h2>
+      <p>Thirty years of Chinese manufacturing excellence, now paired with a brand-new Thai production hub — built for the US market.</p>
+    </div>
+  </div>
+  <div class="factories-grid">
+
+    <!-- Thailand -->
+    <div class="factory-panel">
+      <div class="factory-panel-img" style="background-image: url('img/757dfbb52b981101c5790339cc6810e2.jpg');"></div>
+      <div class="factory-panel-overlay"></div>
+      <div class="factory-panel-content">
+        <div class="factory-flag">🇹🇭 &nbsp;Thailand · Production Hub</div>
+        <h3>Suilun Hardware (Thailand) Co., Ltd.</h3>
+        <p class="factory-panel-sub">State-of-the-art facility in Chonburi Province, Eastern Seaboard Industrial Zone — strategically located 30 km from Laem Chabang, Thailand's busiest deep-sea port.</p>
+        <div class="factory-detail-row">
+          <div class="fd-chip"><div class="fd-v">16 ac</div><div class="fd-l">Site Area</div></div>
+          <div class="fd-chip"><div class="fd-v">30,000㎡</div><div class="fd-l">Production Floor</div></div>
+          <div class="fd-chip"><div class="fd-v">300+</div><div class="fd-l">Employees</div></div>
+          <div class="fd-chip"><div class="fd-v">30 km</div><div class="fd-l">To Laem Chabang Port</div></div>
+        </div>
+        <a href="factory.html" class="factory-link">See Factory Tour →</a>
+      </div>
+    </div>
+
+    <!-- China -->
+    <div class="factory-panel">
+      <div class="factory-panel-img" style="background-image: url('img/4af533fcb01ea7e97c02aa66dd357814.jpg');"></div>
+      <div class="factory-panel-overlay"></div>
+      <div class="factory-panel-content">
+        <div class="factory-flag">🇨🇳 &nbsp;China · R&D & Heritage</div>
+        <h3>Pinghu Hinge Co., Ltd.</h3>
+        <p class="factory-panel-sub">Our parent company — founded over 30 years ago in Pinghu City, Jiaxing, Zhejiang Province. The R&D and engineering backbone behind every Suilun product. Home to our precision tooling, electroplating lines, and product development teams.</p>
+        <div class="factory-detail-row">
+          <div class="fd-chip"><div class="fd-v">30+</div><div class="fd-l">Years Founded</div></div>
+          <div class="fd-chip"><div class="fd-v">Pinghu City</div><div class="fd-l">Jiaxing, Zhejiang</div></div>
+          <div class="fd-chip"><div class="fd-v">ISO 9001</div><div class="fd-l">Certified</div></div>
+        </div>
+        <a href="factory.html" class="factory-link">Learn More →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUALITY STRIP -->
+<div class="quality-strip">
+  <div class="wrap">
+    <div class="quality-inner">
+      <div class="quality-text">
+        <h3>Certified Quality — Built Into Every Product</h3>
+        <p>International standards, rigorously maintained across both facilities.</p>
+      </div>
+      <div class="cert-row">
+        <div class="cert-pill">
+          <div class="cert-icon">🏅</div>
+          <div><div class="cert-name">ISO 9001</div><div class="cert-desc">Quality Management</div></div>
+        </div>
+        <div class="cert-pill">
+          <div class="cert-icon">🔥</div>
+          <div><div class="cert-name">UL Listed</div><div class="cert-desc">Commercial & Spring Hinges</div></div>
+        </div>
+        <div class="cert-pill">
+          <div class="cert-icon">⭐</div>
+          <div><div class="cert-name">6S Management</div><div class="cert-desc">Site Operations</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <div style="max-width:640px;margin:0 auto;">
+      <h2>Ready to Source with Confidence?</h2>
+      <p>Whether you're a retailer, distributor, or contractor — tell us what you need. Our team responds fast.</p>
+      <div class="cta-actions">
+        <a href="mailto:info@suilunhardware.com" class="btn btn-white">Send an Inquiry →</a>
+        <a href="products.html" class="btn btn-outline-white">View Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">SUIL<span style="color:var(--orange)">UN</span> HARDWARE</span>
+        <p>America's #1 hinge brand for over 30 years — now a complete hardware partner supplying the pros who build America.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="products.html#residential">Residential Hinges</a>
+        <a href="products.html#commercial">Commercial Hinges</a>
+        <a href="products.html#spring">Spring Hinges</a>
+        <a href="products.html#cabinet">Cabinet Hardware</a>
+        <a href="products.html#drawer">Drawer Slides</a>
+        <a href="products.html#shelf">Shelf Brackets</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="factory.html">Our Factories</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+        <a href="https://suilunhardware.com" target="_blank">suilunhardware.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <a href="#">🇹🇭 Chonburi, Thailand</a>
+        <a href="#">🇨🇳 Pinghu, Zhejiang, China</a>
+        <a href="#">ISO 9001 Certified</a>
+        <a href="#">UL Listed Products</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Suilun Hardware (Thailand) Co., Ltd. All rights reserved.</p>
+      <p>A subsidiary of Pinghu Hinge Co., Ltd. · Pinghu City, Jiaxing, Zhejiang, China</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(els => els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

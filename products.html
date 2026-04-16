@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Suilun Hardware</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  background: var(--dark); padding: 140px 0 72px;
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content:''; position:absolute; inset:0;
+  background-image: url('img/6680ef01e1f084ab9c419d79f8d6a4d5.jpg');
+  background-size: cover; background-position: center;
+  filter: brightness(0.18);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero .eyebrow { color: var(--orange); }
+.page-hero h1 { color: white; font-size: clamp(36px,5vw,64px); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.45); font-size: 18px; max-width: 560px; }
+
+/* FILTER NAV */
+.filter-bar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 64px; z-index: 90;
+}
+.filter-inner {
+  display: flex; gap: 4px; overflow-x: auto;
+  padding: 12px 0; scrollbar-width: none;
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  padding: 8px 18px; border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-500); border: 1.5px solid var(--border);
+  background: white; cursor: pointer; transition: all 0.2s;
+  white-space: nowrap;
+}
+.filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+.filter-btn.active { background: var(--orange); color: white; border-color: var(--orange); }
+
+/* CATEGORY SECTIONS */
+.cat-section { padding: 80px 0; border-bottom: 1px solid var(--border); background: var(--gray-50); }
+.cat-section:last-child { border-bottom: none; }
+.cat-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 40px; flex-wrap: wrap; gap: 16px;
+}
+.cat-header h2 { font-size: clamp(26px,3vw,36px); }
+.cat-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--orange-pale); color: var(--orange);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+/* PRODUCT GRID */
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media(max-width:1024px) { .prod-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:768px) { .prod-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:400px) { .prod-grid { grid-template-columns: 1fr; } }
+
+.prod-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  background: white;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.prod-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(232,100,10,0.1); }
+.prod-img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--gray-100);
+}
+.prod-icon-wrap {
+  width: 100%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--border);
+}
+.prod-icon-wrap svg { width: 48px; height: 48px; stroke: var(--gray-400); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+.prod-card:hover .prod-icon-wrap svg { stroke: var(--orange); }
+.prod-body { padding: 18px 16px; }
+.prod-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.35; }
+.prod-spec { font-size: 12px; color: var(--gray-400); }
+
+.prod-card.wide {
+  grid-column: span 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.prod-card.wide .prod-img { aspect-ratio: auto; height: 100%; min-height: 200px; }
+.prod-card.wide .prod-icon-wrap { aspect-ratio: auto; height: 100%; min-height: 200px; border-bottom: none; border-right: 1px solid var(--border); }
+.prod-card.wide .prod-icon-wrap svg { width: 72px; height: 72px; }
+.prod-card.wide .prod-body { padding: 28px; display: flex; flex-direction: column; justify-content: center; }
+.prod-card.wide .prod-name { font-size: 18px; margin-bottom: 8px; }
+.prod-card.wide .prod-spec { font-size: 14px; line-height: 1.6; color: var(--gray-500); }
+@media(max-width:640px) {
+  .prod-card.wide { grid-column: span 1; grid-template-columns: 1fr; }
+  .prod-card.wide .prod-img { min-height: 160px; }
+  .prod-card.wide .prod-icon-wrap { min-height: 160px; border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+/* MATERIAL TAGS */
+.material-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.mtag {
+  font-size: 11px; font-weight: 600;
+  padding: 3px 9px; border-radius: 6px;
+  background: var(--gray-100); color: var(--gray-700);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <img src="img/e153deb89362e9149286156237be7765.jpg" alt="Suilun" onerror="this.style.display='none'">
+      </div>
+      <span class="logo-name">SUIL<span>UN</span></span>
+    </a>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="factory.html">Factory</a>
+      <a href="index.html#partners">Clients</a>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap page-hero-content">
+    <span class="eyebrow">Full Catalog · 1,000+ SKUs</span>
+    <h1>Products</h1>
+    <p>Complete hardware solutions for the US market — from America's #1 hinge lines to door hardware, drawer systems, cabinet fittings, and custom OEM.</p>
+  </div>
+</div>
+<div class="orange-rule"></div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="wrap">
+    <div class="filter-inner">
+      <button class="filter-btn active" onclick="filterCat('all',this)">All Products</button>
+      <button class="filter-btn" onclick="filterCat('residential',this)">Residential Hinges</button>
+      <button class="filter-btn" onclick="filterCat('commercial',this)">Commercial Hinges</button>
+      <button class="filter-btn" onclick="filterCat('spring',this)">Spring Hinges</button>
+      <button class="filter-btn" onclick="filterCat('cabinet',this)">Cabinet Hardware</button>
+      <button class="filter-btn" onclick="filterCat('drawer',this)">Drawer Slides</button>
+      <button class="filter-btn" onclick="filterCat('shelf',this)">Shelf Brackets</button>
+      <button class="filter-btn" onclick="filterCat('doorstop',this)">Door Stops</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT SECTIONS -->
+<div>
+
+  <!-- RESIDENTIAL -->
+  <section class="cat-section" id="residential" data-cat="residential">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 01</span>
+          <h2>Residential Hinges</h2>
+        </div>
+        <span class="cat-tag">#1 in the US Market</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <img class="prod-img" src="img/6680ef01e1f084ab9c419d79f8d6a4d5.jpg" alt="Residential Hinge" loading="lazy">
+          <div class="prod-body">
+            <div class="prod-name">Residential Door Hinge Collection</div>
+            <div class="prod-spec">Our flagship line — trusted by US builders for over 30 years. Available in multiple sizes, gauges, and finishes to suit any residential application. UL Listed where applicable.</div>
+            <div class="material-row">
+              <span class="mtag">Steel</span><span class="mtag">Stainless</span><span class="mtag">Zinc</span><span class="mtag">Multiple Finishes</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <img class="prod-img" src="img/987623bb5fa32a2aaf404b2c9ffb2390.jpg" alt="Square Hinge" loading="lazy">
+          <div class="prod-body"><div class="prod-name">Square Corner Hinge</div><div class="prod-spec">Standard 3.5" & 4" square corner</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <img class="prod-img" src="img/6680ef01e1f084ab9c419d79f8d6a4d5.jpg" alt="Round Corner Hinge" loading="lazy" style="object-position:center">
+          <div class="prod-body"><div class="prod-name">Round Corner Hinge</div><div class="prod-spec">Radius corner, residential standard</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><circle cx="12" cy="12" r="2"/><path d="M8 12h8"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Light Iron Hinge</div><div class="prod-spec">Lightweight, interior door applications</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="5" height="18" rx="1"/><rect x="16" y="3" width="5" height="18" rx="1"/><circle cx="12" cy="12" r="2.5"/><path d="M8 12h8"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Heavy Iron Hinge</div><div class="prod-spec">Solid iron, exterior & heavy doors</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><circle cx="12" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M8 8h4M8 16h4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Ball Bearing Hinge</div><div class="prod-spec">Smooth operation, reduced wear</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <img class="prod-img" src="img/987623bb5fa32a2aaf404b2c9ffb2390.jpg" alt="Stainless Steel Hinge" loading="lazy">
+          <div class="prod-body"><div class="prod-name">Stainless Steel Hinge</div><div class="prod-spec">Corrosion-resistant, exterior grade</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="10" rx="1"/><rect x="16" y="11" width="4" height="10" rx="1"/><path d="M8 8h4a4 4 0 0 1 4 4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Lift-off Hinge</div><div class="prod-spec">Removable pin, easy door removal</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M12 10v4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Bending Hinge</div><div class="prod-spec">Adjustable angle mounting</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMERCIAL -->
+  <section class="cat-section" id="commercial" data-cat="commercial">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 02</span>
+          <h2>Commercial Hinges</h2>
+        </div>
+        <span class="cat-tag">UL Certified Available</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <img class="prod-img" src="img/987623bb5fa32a2aaf404b2c9ffb2390.jpg" alt="Commercial Hinge" loading="lazy">
+          <div class="prod-body">
+            <div class="prod-name">Commercial Grade Hinge System</div>
+            <div class="prod-spec">Engineered for high-traffic commercial environments — offices, retail, schools, hospitals, and public buildings. Meets ANSI/BHMA standards and UL fire-rating requirements.</div>
+            <div class="material-row">
+              <span class="mtag">ANSI Grade 1</span><span class="mtag">UL Listed</span><span class="mtag">Fire Rated</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><path d="M8 12h8"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">3.5" Commercial Hinge</div><div class="prod-spec">Standard commercial specification</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><path d="M8 12h8"/><path d="M11 9l2 3-2 3"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Security Hinge</div><div class="prod-spec">Anti-tamper, non-removable pin</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><circle cx="12" cy="12" r="3"/><path d="M9 12h6"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Ball-head Square Hinge</div><div class="prod-spec">Heavy-duty ball-bearing commercial</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><ellipse cx="12" cy="12" rx="3" ry="2"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Nylon Steel Ring Hinge</div><div class="prod-spec">Quiet operation, medical & office</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><path d="M8 7h8M8 17h8M8 12h8"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Australian Hinge</div><div class="prod-spec">Compliant with AS/NZS standards</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPRING -->
+  <section class="cat-section" id="spring" data-cat="spring">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 03</span>
+          <h2>Spring Hinges</h2>
+        </div>
+        <span class="cat-tag">UL Listed</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <img class="prod-img" src="img/aa87e4f6448f8d0ce8bfd99c285d1610.jpg" alt="Spring Hinge" loading="lazy">
+          <div class="prod-body">
+            <div class="prod-name">Spring Hinge Collection</div>
+            <div class="prod-spec">Self-closing hinges for fire doors, screen doors, and controlled-access entries. UL listed for fire-rated assemblies. Adjustable closing tension for any application.</div>
+            <div class="material-row">
+              <span class="mtag">UL Listed</span><span class="mtag">Self-Closing</span><span class="mtag">Adjustable Tension</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <img class="prod-img" src="img/aa87e4f6448f8d0ce8bfd99c285d1610.jpg" alt="UL Spring Hinge" loading="lazy">
+          <div class="prod-body"><div class="prod-name">UL Spring Hinge</div><div class="prod-spec">Fire door certified, single & double</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 20v-6h8v6"/><path d="M12 14v6"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Cabinet Self-Closing</div><div class="prod-spec">Cabinet doors, light-duty applications</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7z"/><path d="M12 2v20M4 7l8 5 8-5"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">"H" Iron Spring Hinge</div><div class="prod-spec">Traditional H-style, screen doors</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 4h7a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4z"/><path d="M13 8h7M13 16h7"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">European "H" Hinge</div><div class="prod-spec">Continental standard, adjustable</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CABINET -->
+  <section class="cat-section" id="cabinet" data-cat="cabinet">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 04</span>
+          <h2>Cabinet Hardware</h2>
+        </div>
+        <span class="cat-tag">Kitchen & Bath</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <div class="prod-icon-wrap" style="border-right: 1px solid var(--border); border-bottom: none;">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="9" rx="2"/><rect x="2" y="12" width="20" height="9" rx="2"/><circle cx="12" cy="7.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="16.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Cabinet Hinge System</div>
+            <div class="prod-spec">Complete cabinet hinge solutions for kitchen and bath cabinetry — concealed, face frame, overlay, and inset configurations. Designed for North American cabinetry standards.</div>
+            <div class="material-row">
+              <span class="mtag">Concealed</span><span class="mtag">Face Frame</span><span class="mtag">Full Overlay</span><span class="mtag">Inset</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="12" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Flush Hinge</div><div class="prod-spec">Flat profile, face-mount application</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">European "H" Cabinet Hinge</div><div class="prod-spec">Frameless & face-frame compatible</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v2H3V5a2 2 0 0 1 2-2z"/><path d="M3 7v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">"H" Iron Cabinet Hinge</div><div class="prod-spec">Classic iron, surface-mount</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="3" height="18" rx="1"/><rect x="17" y="3" width="3" height="18" rx="1"/><path d="M7 12h10"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" style="fill:var(--gray-400)"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Butt Hinge — Satin Nickel</div><div class="prod-spec">Polished & brushed finish options</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRAWER -->
+  <section class="cat-section" id="drawer" data-cat="drawer">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 05</span>
+          <h2>Drawer Slide Systems</h2>
+        </div>
+        <span class="cat-tag">Soft-Close Available</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <div class="prod-icon-wrap" style="border-right: 1px solid var(--border); border-bottom: none;">
+            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="6" rx="1"/><rect x="2" y="13" width="20" height="6" rx="1"/><path d="M5 8h14"/><path d="M5 16h14"/><circle cx="19" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="19" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Drawer Slide Systems</div>
+            <div class="prod-spec">Smooth, reliable drawer slides for kitchens, offices, and industrial storage. Available in side-mount, bottom-mount, full-extension, and heavy-duty configurations.</div>
+            <div class="material-row">
+              <span class="mtag">Full Extension</span><span class="mtag">Soft-Close</span><span class="mtag">Heavy Duty</span><span class="mtag">Side-Mount</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M2 12h20"/><path d="M6 10v4M18 10v4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Standard Drawer Slide</div><div class="prod-spec">Side-mount, 3/4 & full extension</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M2 12h20"/><path d="M16 8v8"/><path d="M18 10c1 1 1 3 0 4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Soft-Close Slide</div><div class="prod-spec">Dampened close, premium feel</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M2 12h20"/><path d="M6 9v6M18 9v6"/><path d="M9 9h6"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Heavy Duty Slide</div><div class="prod-spec">100lb+ capacity, industrial grade</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHELF -->
+  <section class="cat-section" id="shelf" data-cat="shelf">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 06</span>
+          <h2>Shelf Bracket Series</h2>
+        </div>
+        <span class="cat-tag">Retail & Residential</span>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card wide reveal">
+          <div class="prod-icon-wrap" style="border-right: 1px solid var(--border); border-bottom: none;">
+            <svg viewBox="0 0 24 24"><path d="M3 21V6"/><path d="M3 10l7-7 4 4 7-3"/><path d="M3 17h18"/><path d="M3 21h18"/></svg>
+          </div>
+          <div class="prod-body">
+            <div class="prod-name">Shelf Support & Bracket Systems</div>
+            <div class="prod-spec">From standard L-brackets to heavy-load floating shelf supports — designed for retail shelving, residential closets, garage storage, and commercial display. Powder-coated steel in multiple finishes.</div>
+            <div class="material-row">
+              <span class="mtag">Powder-Coated Steel</span><span class="mtag">Multiple Sizes</span><span class="mtag">Heavy Load</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M7 5v14"/><path d="M7 19h10"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Standard L-Bracket</div><div class="prod-spec">6", 8", 10", 12" available</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M7 5v10"/><path d="M7 15h10"/><path d="M17 15v-4"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Bracket with Hook</div><div class="prod-spec">Integrated hook for hanging storage</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 8h18"/><path d="M3 16h18"/><path d="M8 8v8"/><path d="M16 8v8"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Floating Shelf Support</div><div class="prod-spec">Concealed mount, clean finish</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOOR STOPS -->
+  <section class="cat-section" id="doorstop" data-cat="doorstop">
+    <div class="wrap">
+      <div class="cat-header">
+        <div>
+          <span class="eyebrow">Category 07</span>
+          <h2>Door Stops & Closers</h2>
+        </div>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card reveal">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="3" y="10" width="4" height="10" rx="2"/><path d="M7 15h14"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Iron Door Stop</div><div class="prod-spec">Floor-mount & wall-mount options</div></div>
+        </div>
+        <div class="prod-card reveal d1">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M6 21v-7"/><path d="M6 10c0-3 4-3 4-6a4 4 0 0 0-8 0c0 3 4 3 4 6z"/><path d="M6 21h12"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Spring Door Stop</div><div class="prod-spec">Flexible coil, baseboard mount</div></div>
+        </div>
+        <div class="prod-card reveal d2">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M16 8l4 4-4 4"/><circle cx="6" cy="12" r="2"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Door Spring with Rod</div><div class="prod-spec">Screen door closer, adjustable tension</div></div>
+        </div>
+        <div class="prod-card reveal d3">
+          <div class="prod-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="18" rx="1"/><rect x="16" y="3" width="4" height="18" rx="1"/><path d="M8 12h8"/><path d="M14 9l3 3-3 3"/></svg>
+          </div>
+          <div class="prod-body"><div class="prod-name">Hinge-Pin Stop</div><div class="prod-spec">Mounts on existing hinge pin</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- CTA -->
+<section style="background:var(--dark);padding:80px 0;text-align:center;">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--orange)">Custom & OEM</span>
+    <h2 style="color:white;margin-bottom:16px;">Don't See What You Need?</h2>
+    <p style="color:rgba(255,255,255,0.45);font-size:18px;max-width:520px;margin:0 auto 40px;">We manufacture custom hardware to spec. Private label, custom finishes, packaging, and quantities — any hardware, at scale.</p>
+    <a href="index.html#contact" class="btn btn-primary">Request Custom Quote →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">SUIL<span style="color:var(--orange)">UN</span> HARDWARE</span>
+        <p>America's #1 hinge brand for over 30 years. 1,000+ SKUs, built at scale for the US market.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="#residential">Residential Hinges</a>
+        <a href="#commercial">Commercial Hinges</a>
+        <a href="#spring">Spring Hinges</a>
+        <a href="#cabinet">Cabinet Hardware</a>
+        <a href="#drawer">Drawer Slides</a>
+        <a href="#shelf">Shelf Brackets</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="factory.html">Our Factories</a>
+        <a href="index.html#partners">Partners</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Certifications</h4>
+        <a href="#">ISO 9001 Certified</a>
+        <a href="#">UL Listed Products</a>
+        <a href="#">6S Management</a>
+        <a href="#">ANSI/BHMA Standards</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Suilun Hardware (Thailand) Co., Ltd.</p>
+      <p>A subsidiary of Pinghu Hinge Co., Ltd. · Pinghu City, Jiaxing, Zhejiang, China</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.cat-section').forEach(s => {
+    if (cat === 'all' || s.dataset.cat === cat) s.style.display = '';
+    else s.style.display = 'none';
+  });
+  if (cat !== 'all') {
+    const target = document.getElementById(cat);
+    if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+const obs = new IntersectionObserver(els => els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

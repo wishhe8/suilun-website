@@ -1,0 +1,151 @@
+/* ── SUILUN HARDWARE — SHARED STYLES ─────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --orange:     #E8640A;
+  --orange-d:   #c8540a;
+  --orange-l:   #F4762A;
+  --orange-pale:#FFF3EB;
+  --dark:       #1A1A1A;
+  --dark2:      #2D2D2D;
+  --gray-700:   #4A4A4A;
+  --gray-500:   #737373;
+  --gray-400:   #9A9A9A;
+  --gray-200:   #E8E8E8;
+  --gray-100:   #F4F4F2;
+  --gray-50:    #FAFAF8;
+  --white:      #FFFFFF;
+  --border:     #E2E2E0;
+  --r:          10px;
+  --r2:         18px;
+  --shadow:     0 2px 16px rgba(0,0,0,0.08);
+  --shadow-lg:  0 12px 48px rgba(0,0,0,0.14);
+  --font:       'Inter', system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--dark);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── TYPOGRAPHY ─────────────────────────────── */
+.eyebrow {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 12px;
+}
+h1 { font-size: clamp(40px,5.5vw,80px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.0; }
+h2 { font-size: clamp(30px,3.8vw,52px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+h3 { font-size: clamp(18px,2.2vw,24px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+.lead { font-size: clamp(16px,1.8vw,19px); color: var(--gray-500); line-height: 1.7; }
+
+/* ── LAYOUT ─────────────────────────────────── */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+section { padding: 104px 0; }
+.section-head { margin-bottom: 64px; }
+@media(max-width:640px) {
+  .wrap { padding: 0 20px; }
+  section { padding: 72px 0; }
+  .section-head { margin-bottom: 44px; }
+}
+
+/* ── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(26,26,26,0.95);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.3s;
+}
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 38px; height: 38px; background: var(--orange);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.logo-icon img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); }
+.logo-icon svg { width: 22px; height: 22px; fill: white; }
+.logo-name { font-size: 16px; font-weight: 900; color: white; letter-spacing: 0.05em; }
+.logo-name span { color: var(--orange); }
+.nav-menu { display: flex; align-items: center; gap: 4px; }
+.nav-menu a {
+  padding: 8px 16px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.6);
+  transition: all 0.2s;
+}
+.nav-menu a:hover, .nav-menu a.active { color: white; background: rgba(255,255,255,0.08); }
+.nav-cta {
+  background: var(--orange) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 9px 22px !important;
+}
+.nav-cta:hover { background: var(--orange-l) !important; }
+@media(max-width:768px) { .nav-menu { display: none; } }
+
+/* ── BUTTONS ─────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--r);
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s; border: none;
+}
+.btn-primary { background: var(--orange); color: white; }
+.btn-primary:hover { background: var(--orange-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,100,10,0.35); }
+.btn-outline {
+  background: transparent; color: white;
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+.btn-outline-dark {
+  background: transparent; color: var(--dark);
+  border: 1.5px solid var(--border);
+}
+.btn-outline-dark:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ── ORANGE RULE ─────────────────────────────── */
+.orange-rule { height: 3px; background: linear-gradient(90deg, var(--orange), var(--orange-l), #FFB347); }
+
+/* ── FOOTER ──────────────────────────────────── */
+footer {
+  background: var(--dark); border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 56px 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  margin-bottom: 48px;
+}
+@media(max-width:900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media(max-width:560px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand .logo-name { font-size: 18px; margin-bottom: 16px; display: block; }
+.footer-brand p { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+.footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 12px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--orange); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 28px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.2); }
+
+/* ── REVEAL ANIMATION ────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
+
+/* ── SHARED CARD ─────────────────────────────── */
+.card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: var(--r2); overflow: hidden;
+  transition: all 0.25s;
+}
+.card:hover { border-color: var(--orange); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
