@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advantages — Suilun Hardware</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* PAGE HERO (same as factory) */
+.page-hero { background: var(--dark); padding: 140px 0 72px; position: relative; overflow: hidden; }
+.page-hero-bg { position: absolute; inset: 0; background-image: url('img/757dfbb52b981101c5790339cc6810e2.jpg'); background-size: cover; background-position: center; filter: brightness(0.22); }
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero .eyebrow { color: var(--orange); }
+.page-hero h1 { color: white; font-size: clamp(36px,5vw,64px); margin-bottom: 16px; }
+.page-hero p { color: rgba(255,255,255,0.55); font-size: 18px; max-width: 640px; line-height: 1.6; }
+
+/* INTRO */
+.adv-intro { background: white; }
+.adv-intro .wrap { max-width: 900px; }
+.adv-intro p { color: var(--gray-500,#4A4A4A); font-size: 17px; line-height: 1.85; margin-bottom: 18px; }
+.adv-intro strong { color: var(--dark); }
+
+/* ADVANTAGE SECTIONS */
+.adv-sec { padding: 60px 0; border-top: 1px solid var(--border); background: white; }
+.adv-sec:nth-child(even) { background: var(--gray-50,#FAFAF8); }
+.adv-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 26px; }
+.adv-num { font-size: 15px; font-weight: 800; color: var(--orange); background: var(--orange-pale,#FFF3EB); border-radius: 8px; padding: 6px 12px; flex-shrink: 0; }
+.adv-head h2 { font-size: clamp(22px,3vw,30px); color: var(--dark); letter-spacing: -0.5px; }
+.adv-lead { color: var(--gray-500,#4A4A4A); font-size: 16px; line-height: 1.7; max-width: 760px; margin-bottom: 26px; }
+.adv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:760px){ .adv-grid { grid-template-columns: 1fr; } }
+.adv-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 24px; background: white; box-shadow: var(--shadow); }
+.adv-card h3 { font-size: 18px; color: var(--dark); margin-bottom: 8px; }
+.adv-card h3 .flag { font-size: 20px; margin-right: 6px; }
+.adv-card p { color: var(--gray-500,#4A4A4A); font-size: 14.5px; line-height: 1.7; }
+.adv-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.adv-list li { position: relative; padding-left: 30px; color: var(--gray-500,#4A4A4A); font-size: 15.5px; line-height: 1.65; }
+.adv-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--orange); font-weight: 800; }
+.adv-list li b { color: var(--dark); }
+.cert-badges { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+.cert-badge-lg { border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 22px; background: white; box-shadow: var(--shadow); flex: 1; min-width: 260px; }
+.cert-badge-lg .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--orange); background: var(--orange-pale,#FFF3EB); border-radius: 5px; padding: 3px 9px; margin-bottom: 10px; }
+.cert-badge-lg h3 { font-size: 17px; color: var(--dark); margin-bottom: 6px; }
+.cert-badge-lg p { color: var(--gray-500,#4A4A4A); font-size: 14px; line-height: 1.65; }
+/* ERP flow */
+.erp-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0 24px; }
+.erp-step { background: white; border: 1.5px solid var(--border); border-radius: 8px; padding: 9px 14px; font-size: 13px; font-weight: 600; color: var(--dark); }
+.erp-arrow { color: var(--orange); font-weight: 800; }
+/* STRENGTH SUMMARY */
+.strength-sec { background: var(--dark); padding: 70px 0; }
+.strength-sec .adv-head h2, .strength-sec .adv-lead { color: white; }
+.strength-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 10px; }
+@media(max-width:900px){ .strength-grid { grid-template-columns: 1fr 1fr; } }
+.strength-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px; }
+.strength-card .sv { font-size: 24px; font-weight: 800; color: var(--orange); margin-bottom: 6px; letter-spacing: -0.02em; }
+.strength-card .sl { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.55; }
+/* CTA */
+.adv-cta { background: var(--orange-pale,#FFF3EB); padding: 56px 0; text-align: center; }
+.adv-cta h2 { font-size: clamp(24px,3vw,34px); color: var(--dark); margin-bottom: 12px; }
+.adv-cta p { color: var(--gray-500,#4A4A4A); font-size: 16px; max-width: 620px; margin: 0 auto 24px; line-height: 1.7; }
+.adv-cta .btn { display: inline-block; background: var(--orange); color: white; font-weight: 700; padding: 14px 32px; border-radius: 10px; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <img src="img/e153deb89362e9149286156237be7765.jpg" alt="Suilun" onerror="this.style.display='none'">
+      </div>
+      <span class="logo-name">SUIL<span>UN</span></span>
+    </a>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="factory.html">Factory</a>
+      <a href="advantages.html" class="active">Advantages</a>
+      <a href="index.html#partners">Clients</a>
+      <a href="index.html#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="wrap page-hero-content">
+    <span class="eyebrow">Supplier Qualification · China + Thailand</span>
+    <h1>Factory Advantages</h1>
+    <p>A professional dual-base door hinge manufacturer with standardized production facilities in China and Thailand — 30+ years supplying U.S. door factories, fully certified to American standards.</p>
+  </div>
+</div>
+<div class="orange-rule"></div>
+
+<!-- INTRO -->
+<section class="adv-intro">
+  <div class="wrap">
+    <p class="reveal">Our group has <strong>more than 30 years</strong> of dedicated experience supplying door hinges to United States door manufacturers. We are highly specialized in matching North American residential door manufacturing standards, assembly requirements, finishing specifications and mass-production stability.</p>
+    <p class="reveal">Residential door hinges account for <strong>25%–30%</strong> of our total production volume, while we fully cover commercial <strong>Grade 1 heavy-duty</strong> hinges and <strong>UL fire-rated</strong> hinge series — supporting full product-line procurement for large U.S. door factories. Monthly capacity reaches <strong>10 million hinges</strong>, with complete stamping, polishing, assembly and packaging lines plus <strong>8 electroplating / electrophoresis lines</strong>.</p>
+    <p class="reveal">With complete American-standard certifications, global compliance qualifications, and a unified digital ERP production management system, we are fully capable of undertaking large-volume, long-term framework orders for U.S. residential doors, commercial doors and fire-door projects.</p>
+  </div>
+</section>
+
+<!-- 1. DUAL BASE -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">01</span><h2>Dual Production Base — China + Thailand</h2></div>
+    <p class="adv-lead reveal">Two independent standardized manufacturing bases ensure maximum supply stability and flexible order allocation for the North American market.</p>
+    <div class="adv-grid">
+      <div class="adv-card reveal"><h3><span class="flag">🇨🇳</span>China Factory</h3><p>Product R&amp;D, full-spec mass production, strict quality testing, technical innovation, and global order backup capacity.</p></div>
+      <div class="adv-card reveal"><h3><span class="flag">🇹🇭</span>Thailand Factory</h3><p>Dedicated overseas base serving the U.S. market — stable mass output, faster lead time, and optimal customs-clearance advantages for USA shipments.</p></div>
+    </div>
+    <ul class="adv-list reveal" style="margin-top:22px">
+      <li>Eliminates supply-interruption risk and supports flexible order splitting</li>
+      <li>Doubles effective capacity to match the annual procurement model of top American door manufacturers</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. US CERTIFICATIONS -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">02</span><h2>Full U.S. Standard Certifications</h2></div>
+    <p class="adv-lead reveal">Product quality fully complies with United States building codes and hardware-industry standards.</p>
+    <div class="cert-badges">
+      <div class="cert-badge-lg reveal"><span class="tag">UL10C</span><h3>UL Listed Fire-Rated Certification</h3><p>Qualified for 20 / 45 / 90 / 180-minute fire-door assemblies, fully compliant with NFPA 80 commercial building fire-safety requirements.</p></div>
+      <div class="cert-badge-lg reveal"><span class="tag">ANSI / BHMA A156.1</span><h3>Third-Party Performance Certification</h3><p>Grade 1 (1,000,000-cycle tested), Grade 2 and Grade 3 certified — all performance data meets official U.S. residential &amp; commercial door-hardware standards.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. C-TPAT -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">03</span><h2>C-TPAT Secure Supply Chain</h2></div>
+    <p class="adv-lead reveal">Both China and Thailand factories strictly implement C-TPAT anti-terrorism supply-chain security management — guaranteeing 100% smooth and safe U.S. customs clearance without delay or penalty risk.</p>
+    <ul class="adv-list reveal">
+      <li>Full warehouse security and access control</li>
+      <li>Standard container-loading supervision procedure</li>
+      <li>Staff safety background management</li>
+      <li>Complete shipment traceability records</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. SOCIAL COMPLIANCE -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">04</span><h2>Social Compliance &amp; Responsibility</h2></div>
+    <p class="adv-lead reveal">Our manufacturing bases fully comply with the international social-responsibility standards required by U.S. famous brands and listed companies.</p>
+    <ul class="adv-list reveal">
+      <li>Zero child labor and zero forced labor</li>
+      <li>Standard working hours and formal employee welfare system</li>
+      <li>Complete workplace safety protection mechanism</li>
+      <li>Stable passing record of third-party social-compliance audits</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. ISO 9001 -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">05</span><h2>ISO 9001 Quality Management System</h2></div>
+    <p class="adv-lead reveal">ISO 9001 certified for both production bases, with a complete quality-document system supporting official vendor audits and project inspection.</p>
+    <ul class="adv-list reveal">
+      <li>Strict <b>IQC / IPQC / FQC</b> full-process quality control</li>
+      <li>Stable batch consistency, precise dimensional-tolerance control, and qualified surface finishing</li>
+      <li>Complete quality documentation for audits and inspection</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. ERP -->
+<section class="adv-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">06</span><h2>Unified ERP Digital Production Management</h2></div>
+    <p class="adv-lead reveal">A unified ERP system runs across both China and Thailand factories for standardized, traceable and intelligent order execution — full order-lifecycle tracking:</p>
+    <div class="erp-flow reveal">
+      <span class="erp-step">Customer PO</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Material Allocation</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Scheduling</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Production</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Quality Inspection</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Packaging</span><span class="erp-arrow">→</span>
+      <span class="erp-step">Shipment</span>
+    </div>
+    <ul class="adv-list reveal">
+      <li>Real-time cross-factory capacity balancing and inventory management</li>
+      <li>Full batch traceability of raw materials, production logs, inspection reports and shipping records</li>
+      <li>Accurate lead-time calculation and stable delivery scheduling for annual bulk framework orders</li>
+      <li>Standardized order revision, rush-order processing and data archiving for customer-audit requirements</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. STRENGTH SUMMARY -->
+<section class="strength-sec">
+  <div class="wrap">
+    <div class="adv-head reveal"><span class="adv-num">07</span><h2>Comprehensive Supplier Strength</h2></div>
+    <p class="adv-lead reveal">A highly professional, fully qualified U.S.-focused door hinge manufacturer.</p>
+    <div class="strength-grid">
+      <div class="strength-card reveal"><div class="sv">30+ yrs</div><div class="sl">Exclusive experience serving American door factories</div></div>
+      <div class="strength-card reveal"><div class="sv">10M / mo</div><div class="sl">Monthly hinge capacity · 8 plating &amp; electrophoresis lines</div></div>
+      <div class="strength-card reveal"><div class="sv">2 Bases</div><div class="sl">China + Thailand dual production backup capacity</div></div>
+      <div class="strength-card reveal"><div class="sv">Full Set</div><div class="sl">UL · BHMA · C-TPAT · Social Compliance · ISO 9001 · ERP</div></div>
+    </div>
+    <ul class="adv-list reveal" style="margin-top:26px">
+      <li style="color:rgba(255,255,255,0.85)">Mature residential hinge production (25%–30% of total output) + full commercial &amp; fire-hinge product lines</li>
+      <li style="color:rgba(255,255,255,0.85)">Professional <b style="color:#fff">OEM</b>, customized specifications, custom hole patterns, exclusive surface finishes and private-labeling services</li>
+      <li style="color:rgba(255,255,255,0.85)">All original certificates, test reports, audit documents and ERP records available for official review</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="adv-cta">
+  <div class="wrap">
+    <h2>Your long-term qualified global hinge supplier</h2>
+    <p>For residential, commercial and fire-rated door-hinge projects across the United States — OEM, framework orders, and full-line procurement.</p>
+    <a class="btn" href="index.html#contact">Request Vendor Package</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">SUIL<span style="color:var(--orange)">UN</span> HARDWARE</span>
+        <p>Fully integrated manufacturing — from raw steel to retail-ready product. Two facilities, one standard of excellence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Workshops</h4>
+        <a href="#">Pressing & Stamping</a>
+        <a href="#">Polishing</a>
+        <a href="#">Electroplating</a>
+        <a href="#">Assembly & QC</a>
+        <a href="#">Packaging & Warehouse</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="factory.html">Factory</a>
+        <a href="advantages.html">Advantages</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <a href="#">🇹🇭 Chonburi Province, Thailand</a>
+        <a href="#">🇨🇳 Pinghu City, Zhejiang, China</a>
+        <a href="#">30km to Laem Chabang Port</a>
+        <a href="#">EEC Industrial Zone</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Suilun Hardware (Thailand) Co., Ltd. All rights reserved.</p>
+      <p>A subsidiary of Pinghu Hinge Co., Ltd. · Pinghu City, Jiaxing, Zhejiang, China</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(els => els.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
